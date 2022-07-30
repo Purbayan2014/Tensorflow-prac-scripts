@@ -1,0 +1,80 @@
+conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/
+python3 -m pip install tensorflow
+# Verify install:
+python3 -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+
+
+
+#### ACTIVATE THE NOTEBOOK IN THE SPECIFIC ENV
+
+
+
+You have two options. You can install the Jupyter Notebook into each environment, and run the Notebook from that environment:
+
+conda create -n testEnv python=3.5 notebook
+source activate testEnv
+jupyter notebook
+
+or you need to install the IPython kernel from testEnv into the environment from which you want to run Jupyter Notebook. Instructions are here: http://ipython.readthedocs.io/en/stable/install/kernel_install.html#kernels-for-different-environments To summarize:
+
+conda create -n testEnv python=3.5
+source activate testEnv
+python -m ipykernel install --user --name testEnv --display-name "Python (testEnv)"
+source deactivate
+jupyter notebook
+
+
+
+
+
+##### FOR NUMA CONNECTION ERROR
+
+
+# What is NUMA (Non-Uniformed Memory Access)
+
+**Non-Uniform Memory Access (NUMA)** is one of the computer memory design methods used in multiprocessor systems, and the time to access the memory varies depending on the relative position between the memory and the processor. In the NUMA architecture, when a processor accesses its local memory, it is faster than when it accesses the remote memory. Remote memory refers to memory that is connected to another processor, and local memory refers to memory that is connected to its own processor.
+In other words, it is a technology to increase memory access efficiency while using multiple processors on one motherboard. When a specific processor runs out of memory, it monopolizes the bus by itself, so other processors have to play. , and designate 'access only here', and call it a NUMA node.
+
+## 1. Check Nodes
+```bash
+lspci | grep -i nvidia
+  
+01:00.0 VGA compatible controller: NVIDIA Corporation TU106 [GeForce RTX 2060 12GB] (rev a1)
+01:00.1 Audio device: NVIDIA Corporation TU106 High Definition Audio Controller (rev a1)
+```
+The first line shows the address of the VGA compatible device, NVIDIA Geforce, as **01:00** . Each one will be different, so let's change this part carefully.
+## 2. Check and change NUMA setting values
+If you go to `/sys/bus/pci/devicecs/`, you can see the following list:
+```bash
+ls /sys/bus/pci/devices/
+  
+0000:00:00.0  0000:00:06.0  0000:00:15.0  0000:00:1c.0  0000:00:1f.3  0000:00:1f.6  0000:02:00.0
+0000:00:01.0  0000:00:14.0  0000:00:16.0  0000:00:1d.0  0000:00:1f.4  0000:01:00.0
+0000:00:02.0  0000:00:14.2  0000:00:17.0  0000:00:1f.0  0000:00:1f.5  0000:01:00.1
+```
+01:00.0 checked above is visible. However, 0000: is attached in front.
+
+## 3. Check if it is connected.
+```bash
+cat /sys/bus/pci/devices/0000\:01\:00.0/numa_node
+  
+-1
+```
+-1 means no connection, 0 means connected.
+
+## 4. Fix it with the command below.
+```bash
+sudo echo 0 | sudo tee -a /sys/bus/pci/devices/0000\:01\:00.0/numa_node
+  
+0
+```
+It shows 0 which means connected!
+
+## 5. Check again:
+```bash
+cat /sys/bus/pci/devices/0000\:01\:00.0/numa_node
+  
+0
+```
+That's it!
