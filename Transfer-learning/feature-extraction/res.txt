@@ -1,0 +1,82 @@
+Available devices :  1
+There are 2 directories and 0 images in '10_food_classes_10_percent'.
+There are 10 directories and 0 images in '10_food_classes_10_percent/test'.
+There are 0 directories and 250 images in '10_food_classes_10_percent/test/hamburger'.
+There are 0 directories and 250 images in '10_food_classes_10_percent/test/fried_rice'.
+There are 0 directories and 250 images in '10_food_classes_10_percent/test/ramen'.
+There are 0 directories and 250 images in '10_food_classes_10_percent/test/chicken_wings'.
+There are 0 directories and 250 images in '10_food_classes_10_percent/test/pizza'.
+There are 0 directories and 250 images in '10_food_classes_10_percent/test/sushi'.
+There are 0 directories and 250 images in '10_food_classes_10_percent/test/grilled_salmon'.
+There are 0 directories and 250 images in '10_food_classes_10_percent/test/ice_cream'.
+There are 0 directories and 250 images in '10_food_classes_10_percent/test/chicken_curry'.
+There are 0 directories and 250 images in '10_food_classes_10_percent/test/steak'.
+There are 10 directories and 0 images in '10_food_classes_10_percent/train'.
+There are 0 directories and 75 images in '10_food_classes_10_percent/train/hamburger'.
+There are 0 directories and 75 images in '10_food_classes_10_percent/train/fried_rice'.
+There are 0 directories and 75 images in '10_food_classes_10_percent/train/ramen'.
+There are 0 directories and 75 images in '10_food_classes_10_percent/train/chicken_wings'.
+There are 0 directories and 75 images in '10_food_classes_10_percent/train/pizza'.
+There are 0 directories and 75 images in '10_food_classes_10_percent/train/sushi'.
+There are 0 directories and 75 images in '10_food_classes_10_percent/train/grilled_salmon'.
+There are 0 directories and 75 images in '10_food_classes_10_percent/train/ice_cream'.
+There are 0 directories and 75 images in '10_food_classes_10_percent/train/chicken_curry'.
+There are 0 directories and 75 images in '10_food_classes_10_percent/train/steak'.
+Train data
+Found 750 images belonging to 10 classes.
+Testing data
+Found 2500 images belonging to 10 classes.
+Gathering the log data
+Epoch 1/5
+24/24 [==============================] - 122s 5s/step - loss: 2.0253 - accuracy: 0.3213 - val_loss: 1.2165 - val_accuracy: 0.6172
+Epoch 2/5
+24/24 [==============================] - 115s 5s/step - loss: 0.8911 - accuracy: 0.7333 - val_loss: 0.8780 - val_accuracy: 0.7252
+Epoch 3/5
+24/24 [==============================] - 116s 5s/step - loss: 0.5986 - accuracy: 0.8253 - val_loss: 0.7698 - val_accuracy: 0.7592
+Epoch 4/5
+24/24 [==============================] - 116s 5s/step - loss: 0.4510 - accuracy: 0.8813 - val_loss: 0.7275 - val_accuracy: 0.7604
+Epoch 5/5
+24/24 [==============================] - 115s 5s/step - loss: 0.3378 - accuracy: 0.9320 - val_loss: 0.6694 - val_accuracy: 0.7872
+Model: "sequential_12"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ feature_ext_layer (KerasLay  (None, 2048)             23561152  
+ er)                                                             
+                                                                 
+ output_layer (Dense)        (None, 10)                20490     
+                                                                 
+=================================================================
+Total params: 23,581,642
+Trainable params: 20,490
+Non-trainable params: 23,561,152
+_________________________________________________________________
+Gathering the log data
+Epoch 1/5
+24/24 [==============================] - 82s 3s/step - loss: 1.8626 - accuracy: 0.4373 - val_loss: 1.2827 - val_accuracy: 0.7432
+Epoch 2/5
+24/24 [==============================] - 70s 3s/step - loss: 1.0519 - accuracy: 0.7853 - val_loss: 0.8660 - val_accuracy: 0.8220
+Epoch 3/5
+24/24 [==============================] - 68s 3s/step - loss: 0.7523 - accuracy: 0.8413 - val_loss: 0.6920 - val_accuracy: 0.8428
+Epoch 4/5
+24/24 [==============================] - 70s 3s/step - loss: 0.6026 - accuracy: 0.8653 - val_loss: 0.6095 - val_accuracy: 0.8508
+Epoch 5/5
+24/24 [==============================] - 70s 3s/step - loss: 0.5104 - accuracy: 0.8747 - val_loss: 0.5549 - val_accuracy: 0.8604
+Model: "sequential_13"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ feature_ext_layer (KerasLay  (None, 1280)             4049564   
+ er)                                                             
+                                                                 
+ output_layer (Dense)        (None, 10)                12810     
+                                                                 
+=================================================================
+Total params: 4,062,374
+Trainable params: 12,810
+Non-trainable params: 4,049,564
+_________________________________________________________________
+The resnetV250 has 265 layers 
+The efficient-netB0 model has 309 layers 
+Loss curve of the resnet 
+Loss curve of the efficient net
