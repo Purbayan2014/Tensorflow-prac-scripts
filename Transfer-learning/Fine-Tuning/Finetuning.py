@@ -908,7 +908,8 @@ data_augmentation = Sequential([
 
 # Lets view the augmented layers
 target_class = random.choice(train_data_1p.class_names)
-target_dir = train_1_path + target_class
+target_path = "10_food_classes_1_percent/train/"
+target_dir = target_path + target_class
 random_image = random.choice(os.listdir(target_dir))
 random_image_path = target_dir + "/"  + random_image
 
